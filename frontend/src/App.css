@@ -3,6 +3,12 @@
   box-sizing: border-box;
 }
 
+thead {
+  height: 40px;
+  background-color: red;
+  
+}
+
 body {
   background: white;
   color: black;
@@ -139,23 +145,43 @@ body {
 .list li:has(input:checked) label:hover::before {
   background: hsl(200, 100%, 30%);
 }
+/*  */
+
 
 .mt-3 {
-  width: 100%
+  width: 100%;
 }
 
 .container {
-  width: 100%
+  width: 100%;
 }
 
 #root{
-  width: 100%
+  width: 100%;
 }
 
-#top-row {
-  background-color: grey;
+.top-row {
+  background-color: red;
   border: 32px;
   padding: 8px;
   margin: 32px;
 }
+
+table{
+  border: 4px solid black; /* Add a visible bottom border */
+  width: 100%;
+  
+}
+
+
+tr {
+  text-align: center; /* Centers text horizontally */
+  align-items: center;
+  vertical-align: middle; /* Centers text vertically */
+  border-bottom: 1px solid black; /* Add a visible bottom border */
+  border-color: black; /* Set the border color (optional for shorthand consistency) */
+  background-color: honeydew; /* Background color for the row */
+  margin: 100px
+}
+
 

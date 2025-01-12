@@ -1,6 +1,8 @@
 import './App.css';
+import './Components/Modal'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Modal from './Components/Modal';
 // import Table from '@mui/material/Table';
 // import TableBody from '@mui/material/TableBody';
 // import TableCell from '@mui/material/TableCell';
@@ -31,7 +33,7 @@ function MyTable() {
                 <h3>VIAL Query Table</h3>
                 <table className='table'>
                     <thead>
-                        <tr id='top-row'>
+                        <tr className='top-row'>
                             <th>Question</th>
                             <th>Answer</th>
                             <th>Query</th>
@@ -43,9 +45,7 @@ function MyTable() {
                                 return <tr key={info.id}>
                                     <td>{info.question}</td>
                                     <td>{info.answer}</td>
-                                    <td><button>
-                                            +
-                                        </button>
+                                    <td><Modal/>
                                     </td>
                                 </tr>
                             })
