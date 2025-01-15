@@ -11,19 +11,15 @@ datasource db {
 }
 
 model FormData {
-  id       String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  question String
-  answer   String
-  queries  Query[]
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  question      String
+  answer        String
+  title        String
+  description  String
+  createdAt    String
+  updatedAt    String
+  status       String 
 
   @@map("form_data")
 }
 
-model Query {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  status      String
-  formData    FormData @relation(fields: [formDataId], references: [id])
-  formDataId  String // Match the type of `id` in FormData
-}

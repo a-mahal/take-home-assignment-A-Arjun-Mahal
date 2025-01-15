@@ -1,19 +1,16 @@
-import './App.css';
+// import './App.css';
 import './Components/Modal'
+import './MyTable.css'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from './Components/Modal';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import { json } from 'stream/consumers';
+import QueryModal from './Components/QueryModal';
+
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography} from '@mui/material';
 
 function MyTable() {
   const [info, setInfo] = useState([]);
-  
+    // this is to get the formData with a GET request 
     useEffect(() => {
         axios.get('http://127.0.0.1:8080/form-data')
         .then(res => {
@@ -26,41 +23,80 @@ function MyTable() {
     }, [])
     console.log("info after update:", info)
 
+    // this is to update the formData with a PUT request 
+    const updateFormData = async(id, updatedData) => {
+        try {
+            const endpoint = `http://127.0.0.1:8080/put-data`; // Update endpoint if necessary
+            const response = await axios.put(endpoint, updatedData);
+            console.log('Update successful:', response.data);
+      
+            // Update the frontend state with the new data
+            setInfo((prevInfo) =>
+              prevInfo.formData.map((item) =>
+                item.id === id ? { ...item, ...updatedData } : item
+              )
+            );
+          } catch (error) {
+            console.error('Error updating form data:', error);
+          }
+        
+    }
 
     return (
-        <div className='container'>
-            <div className='mt-3'>
-                <h3>VIAL Query Table</h3>
-                <table className='table'>
-                    <thead>
-                        <tr className='top-row'>
-                            <th>Question</th>
-                            <th>Answer</th>
-                            <th>Query</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { Array.isArray(info.formData) ? (
-                            info.formData.map(info => {
-                                return <tr key={info.id}>
-                                    <td>{info.question}</td>
-                                    <td>{info.answer}</td>
-                                    <td><Modal/>
-                                    </td>
-                                </tr>
-                            })
-
-                        ):(
-                            <tr>
-                                <td colSpan="4">No info available</td>
-                            </tr>
-                        )
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    )
+        <TableContainer component={Paper}>
+          <Typography variant="h6" align="center" gutterBottom>
+            VIAL Query Table
+          </Typography>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell><strong>Question</strong></TableCell>
+                <TableCell><strong>Answer</strong></TableCell>
+                <TableCell><strong>Query</strong></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {Array.isArray(info.formData) ? (
+                info.formData.map(info => (
+                  <TableRow key={info.id}>
+                    <TableCell>{info.question}</TableCell>
+                    <TableCell>{info.answer}</TableCell>
+                    <TableCell>
+                      {info.description ? (
+                        <QueryModal
+                          formID={info.id}
+                          question={info.question}
+                          answer={info.answer}
+                          description={info.description}
+                          createdAt={info.createdAt}
+                          updatedAt={info.updatedAt}
+                          status={info.status}
+                          updateFormData={updateFormData}
+                        />
+                      ) : (
+                        <Modal
+                          formID={info.id}
+                          question={info.question}
+                          answer={info.answer}
+                          description={info.description}
+                          createdAt={info.createdAt}
+                          updatedAt={info.updatedAt}
+                          status={info.status}
+                          updateFormData={updateFormData}
+                        />
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={3} align="center">No info available</TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      );
 
   
 };

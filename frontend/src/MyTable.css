@@ -1,0 +1,69 @@
+/* General Table Styles */
+.MuiTableContainer-root {
+    margin: 20px auto; /* Add margin for spacing */
+    max-width: 90%; /* Keep the table responsive */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the container */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #ffffff; /* Table background */
+  }
+  
+  /* Table Header Styles */
+  .MuiTableHead-root {
+    background-color: #007bff; /* Header background */
+  }
+  
+  .MuiTableCell-head {
+    color: white; /* Header text color */
+    font-weight: bold; /* Bold header text */
+    text-align: center; /* Center header text */
+    font-size: 16px; /* Adjust font size */
+  }
+  
+  /* Table Body Styles */
+  .MuiTableRow-root:nth-of-type(odd) {
+    background-color: #f9f9f9; /* Light gray for odd rows */
+  }
+  
+  .MuiTableRow-root:nth-of-type(even) {
+    background-color: #ffffff; /* White for even rows */
+  }
+  
+  .MuiTableCell-body {
+    text-align: center; /* Center all body cells */
+    padding: 12px; /* Add padding for better readability */
+    font-size: 14px; /* Adjust font size */
+  }
+  
+  /* Hover Effect */
+  .MuiTableRow-root:hover {
+    background-color: #f1f1f1; /* Light gray highlight on hover */
+    cursor: pointer; /* Pointer cursor for interactivity */
+  }
+  
+  /* Typography Styles */
+  .MuiTypography-root {
+    margin: 10px 0; /* Add margin for spacing */
+    color: #333333; /* Slightly darker text for readability */
+    font-weight: bold; /* Bold title */
+  }
+  
+  /* Buttons Inside Cells */
+  button {
+    background-color: #007bff; /* Primary blue button */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  button:disabled {
+    background-color: #cccccc; /* Disabled button color */
+    cursor: not-allowed; /* No pointer for disabled */
+  }
+  
