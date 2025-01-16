@@ -10,6 +10,8 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 
 function MyTable() {
   const [info, setInfo] = useState([]);
+
+
     // this is to get the formData with a GET request 
     useEffect(() => {
         axios.get('http://127.0.0.1:8080/form-data')
@@ -23,6 +25,7 @@ function MyTable() {
     }, [])
     console.log("info after update:", info)
 
+
     // this is to update the formData with a PUT request 
     const updateFormData = async(id, updatedData) => {
         try {
@@ -31,16 +34,19 @@ function MyTable() {
             console.log('Update successful:', response.data);
       
             // Update the frontend state with the new data
-            setInfo((prevInfo) =>
-              prevInfo.formData.map((item) =>
-                item.id === id ? { ...item, ...updatedData } : item
+            setInfo(prevInfo => ({
+              ...prevInfo,
+              formData: prevInfo.formData.map((item) =>
+                  item.id === id ? { ...item, ...updatedData } : item
               )
-            );
+          }));
+
           } catch (error) {
             console.error('Error updating form data:', error);
           }
         
     }
+
 
     return (
         <TableContainer component={Paper}>
