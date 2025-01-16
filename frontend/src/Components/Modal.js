@@ -32,7 +32,7 @@ export default function Modal(props) {
         const updatedData = {
             id: props.formID,
             question: props.question,
-            answer: "",
+            answer: props.answer,
             description: val, //this will be the input value
             createdAt: currentDate,
             updatedAt: date,

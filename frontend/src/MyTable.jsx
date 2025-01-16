@@ -39,7 +39,7 @@ function MyTable() {
               formData: prevInfo.formData.map((item) =>
                   item.id === id ? { ...item, ...updatedData } : item
               )
-          }));
+            }));
 
           } catch (error) {
             console.error('Error updating form data:', error);
