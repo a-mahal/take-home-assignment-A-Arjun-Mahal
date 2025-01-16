@@ -8,7 +8,7 @@ function build(opts = {}) {
   const app = fastify(opts)
 
   app.register(formDataRoutes, { prefix: '/form-data' })
-  app.register(putDataRoutes, { prefix: '/put-data' })
+  app.register(putDataRoutes, { prefix: '/put-data' }) // Added this for the put route 
 
   app.setErrorHandler(errorHandler)
 

@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto'
 
 export const getSeedData = async () => {
+  // Updated the seed information to fix the changed schema
   const formData = [
     {
       id: randomUUID(),
